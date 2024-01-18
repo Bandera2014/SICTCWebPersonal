@@ -4,9 +4,11 @@ var router = express.Router();
  
 const libiotdb = require('../iotdb');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 //Parsing handler 
 router.use(bodyParser.json());
+router.use(cors());
 
 //get requests whoami
 router.get('/whoami', (request, response) => {
