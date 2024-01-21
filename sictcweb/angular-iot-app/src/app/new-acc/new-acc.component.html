@@ -1,0 +1,45 @@
+<body class="body">
+    <div class="title-bar">
+        <div class="title-string">
+            IoT Web Page
+        </div>
+    </div>
+    <div class="form">
+        <div class="header">
+            CREATE NEW ACCOUNT
+        </div>
+        <div class="input">
+            <div class="input-field">
+                <div class="header">Name</div>
+                <input id="name" class="input" value="{{name}}" [(ngModel)]="name" type="text">
+            </div>
+            <div class="input-field">
+                <div class="header">Address</div>
+                <input class="input" value="{{address}}" [(ngModel)]="address" id="address" type="text">
+            </div>
+            <div class="input-field">
+                <div class="header">City</div>
+                <input class="input" value="{{city}}" [(ngModel)]="city" id="city" type="text">
+            </div>
+            <div class="input-field">
+                <div class="header">State</div>
+                <input class="input" value="{{state}}" [(ngModel)]="state" id="state" type="text">
+            </div>
+            <div class="input-field">
+                <div class="header">Zip</div>
+                <input class="input" value="{{zip}}" [(ngModel)]="zip" id="zip" type="text">
+            </div>
+        </div>
+        <div class="new-acc">
+            <button class="new-acc-btn" (click)="newAccBtn()">Create Account</button>
+        </div>
+        <div class="login">
+            <div class="login-msg">
+                Already Have An Account?
+            </div>
+            <button class="login-btn" routerLink='/login'>Login</button>
+        </div>
+    </div>
+</body>
+<router-outlet></router-outlet>
+

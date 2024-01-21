@@ -17,57 +17,36 @@
     }
     .form {
         margin-top: 50px;
+        margin-bottom: 50px;
         border-color: rgb(8, 0, 0);
         border-width: 5px;
         border-radius: 4px;
         background-color: rgb(179, 179, 179);
         width: 350px;
-        height: 500px;
+        height: 600px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
         .header {
+            margin-top: 10px;
             font-size: 27px;
             font-family: sans-serif;
         }
-	.loginErr {
-	   background-color: red;
-           width: 270px;
-           height: 30px;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           .loginErr-msg {
-               color: white;
-               font-family: sans-serif;
-           }
-       }
         .input {
-            .username {
-                .name-header {
+            .input-field {
+                .header {
                     font-size: 17px;
                     font-family: sans-serif;
                 }
-                .name-input {
+                .input {
                     width: 250px;
-                    height: 30px;
-                }
-            }
-            .password {
-                margin-top: 17.5px;
-                .pswrd-header {
-                    font-size: 17px;
-                    font-family: sans-serif;
-                }
-                .pswrd-input {
-                    width: 250px;
-                    height: 30px;
+                    height: 25px;
                 }
             }
         }
-        .login {
-            .login-btn {
+        .new-acc {
+            .new-acc-btn {
                 width: 180px;
                 height: 45px;
                 font-size: 20px;
@@ -78,17 +57,17 @@
                 font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             }
         }
-        .new-acc {
+        .login {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-evenly;
-            .new-acc-msg {
+            .login-msg {
                 font-size: 18px;
                 font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
                 color: rgb(0, 0, 0);
             }
-            .new-acc-btn {
+            .login-btn {
                 margin-top: 20px;
                 width: 180px;
                 height: 45px;

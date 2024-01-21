@@ -1,13 +1,37 @@
 <body class="body">
-    <div class="header">
-        LOGIN
-    </div>
-    <app-auth-form></app-auth-form>
-    <div class="new-acc">
-        <div class="new-acc-msg">
-            Don't Have an account?
+    <div class="title-bar">
+        <div class="title-string">
+            IoT Web Page
         </div>
-        <!-- <button class="btn" routerLink='/acc/-1'>Create New Account</button> -->
+    </div>
+    <div class="form">
+        <div class="header">
+            LOGIN
+        </div>
+        <div class="loginErr" *ngIf="this.failedAtt">
+            <div class="loginErr-msg">
+                Username or Password Incorrect
+            </div>
+        </div> 
+        <div class="input">
+            <div class="username">
+                <div class="name-header">Username</div>
+                <input class="name-input" [(ngModel)]="username" name="username" type="text">
+            </div>
+            <div class="password">
+                <div class="pswrd-header">ID Number</div>
+                <input class="pswrd-input" [(ngModel)]="idNum" name="idNum" type="text">
+            </div>
+        </div>
+        <div class="login">
+            <button class="login-btn" (click)="loginBtn()">Login</button>
+        </div>
+        <div class="new-acc">
+            <div class="new-acc-msg">
+                Don't Have an account?
+            </div>
+            <button class="new-acc-btn" routerLink='/new-acc'>Create New Account</button>
+        </div>
     </div>
 </body>
 <router-outlet></router-outlet>

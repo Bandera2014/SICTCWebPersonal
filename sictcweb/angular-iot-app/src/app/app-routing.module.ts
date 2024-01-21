@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from ',/login/login.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { NewAccComponent } from './new-acc/new-acc.component';
 
 const routes: Routes = [
-	{path: '', component: LoginComponent}
+	{ path: '', component: HomeComponent },
+	{ path: 'new-acc', component: NewAccComponent },
+	{ path: 'login', component: LoginComponent },
+	{ path: 'home', component: HomeComponent },
 ];
 
 @NgModule({
