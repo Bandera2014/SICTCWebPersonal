@@ -5,8 +5,8 @@ let mysql2 = require('mysql2');
 //2. constants
 const db_host = process.env.MYSQL_HOST
 const db_name = process.env.MYSQL_DATABASE
-const db_userid = process.env.MYSQL_USER;
-const db_password = process.env.MYSQL_PASSWORD;
+const db_userid = 'sictc'//process.env.MYSQL_USER;
+const db_password = 'Pencil1'//process.env.MYSQL_PASSWORD;
 
 //3. variables
 let pool;
@@ -25,6 +25,8 @@ let configPool = {
 try{
     pool = mysql2.createPool(configPool);
     isConnected = true;
+	console.log(pool);
+	console.log(isConnected);
  }
  catch(err){
     console.log(err);
@@ -37,23 +39,23 @@ try{
 
  //6. Display our tables if they exist
 function runQueryShowTables() {
- 
     const queryString = 'SHOW TABLES';
-    pool.query(queryString, (error, rows, fields) => { if (error) {
-                    console.log("ERROR " + error);
-            }
-       
-            if (rows.length > 0) {
-  
-                rows.forEach(function(row) {
-                    console.log(row.Tables_in_IoT);
-                });
-               
-            } else {
-                console.log('query returned zero results');
-            }
-        });
-  
+    pool.query(queryString, (error, rows, fields) => { 
+        console.log(rows);
+        if (error) {
+		
+            console.log("ERROR " + error);
+        }
+        else if (rows.length > 0) {
+
+            rows.forEach(function(row) {
+                console.log(row.Tables_in_IoT);
+            });
+            
+        } else {
+            console.log('query returned zero results');
+        }
+    });
     return;
  }
 
