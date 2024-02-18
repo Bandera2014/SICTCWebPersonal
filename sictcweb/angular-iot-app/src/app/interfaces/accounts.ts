@@ -16,3 +16,12 @@ export interface NewAccount {
    Zip: string;
 }
 
+export interface UpdateAccount {
+   Id: number;
+   Name: string;
+   Address: string;
+   City: string;
+   State: string;
+   Zip: string;
+}
+ 

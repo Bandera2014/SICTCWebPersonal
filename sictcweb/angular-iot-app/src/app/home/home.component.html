@@ -13,7 +13,64 @@
    <div class="page-msg">
        This Page will harness the full potential of all your Node API Routes!
    </div>
-</div> 
+</div>
+<div class="body">
+    <div *ngIf="!updateInfo">
+        <li class="info" *ngFor="let account of accounts">
+            <div class="info-msg">
+                <div class="info-msg-text">ID : {{account.Id}}</div>
+                <div class="info-msg-text">Name : {{account.Name}}</div>
+                <div class="info-msg-text">Address : {{account.Address}}</div>
+                <div class="info-msg-text">City : {{account.City}}</div>
+                <div class="info-msg-text">State : {{account.State}}</div>
+                <div class="info-msg-text">Zip : {{account.Zip}}</div>
+            </div>
+            <div class="info-btns-container">
+                <button class="info-btn" (click)="deleteBtn(account.Id)">Delete Account</button>
+                <button class="info-btn" (click)="updateBtn(account.Id)">Update Info</button>
+            </div>
+        </li>
+    </div>
+    <div class="form" *ngIf="updateInfo">
+        <div class="header">
+            UPDATE INFO
+        </div>
+        <div class="input">
+            <div class="idErr" *ngIf="emptyField">
+                <div class="idErr-msg">
+                    Empty Fields Not Allowed
+                </div>
+            </div>
+            <div class="input-field">
+                <div class="header">Name</div>
+                <input class="input" value="{{name}}" [(ngModel)]="name" name="name" type="text">
+            </div>
+            <div class="input-field">
+                <div class="header">Address</div>
+                <input class="input" value="{{address}}" [(ngModel)]="address" name="address" type="text">
+            </div>
+            <div class="input-field">
+                <div class="header">City</div>
+                <input class="input" value="{{city}}" [(ngModel)]="city" name="city" type="text">
+            </div>
+            <div class="input-field">
+                <div class="header">State</div>
+                <input class="input" value="{{state}}" [(ngModel)]="state" name="state" type="text">
+            </div>
+            <div class="input-field">
+                <div class="header">Zip</div>
+                <input class="input" value="{{zip}}" [(ngModel)]="zip" name="zip" type="text">
+            </div>
+        </div>
+        <div class="update-acc">
+            <button class="update-acc-btn" (click)="submitBtn()">Submit</button>
+        </div>
+        <div class="update-acc">
+            <button class="update-acc-btn" routerLink="/new-acc">Back</button>
+        </div>
+    </div>
+ </div>
+ 
 <button class="button" routerLink="/login">Log Out</button>
 </body>
 <router-outlet></router-outlet>

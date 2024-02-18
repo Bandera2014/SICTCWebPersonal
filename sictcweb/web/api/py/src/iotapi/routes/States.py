@@ -6,16 +6,6 @@ import json
 #create application object to hadnle the different routes
 stateBP = Blueprint('stateBP',__name__)
 
-#Loading the .env file into memory
-load_dotenv()
-
-#put all of the db connection material in separate class
-import sys                  #GPT this, needed to put the eonnection stuff in separate file
-sys.path.append('routes/')  
-from DBConnection import connectToDB
-#Typically this would be with the imports, but here for learning
-connection=connectToDB()
-
 @stateBP.route('/welcome')
 def statePage():
     allData=getAll()

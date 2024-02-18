@@ -59,46 +59,43 @@ router.post('/add', (request, response) => {
    }); 
 });
 
-
-//delete an account
 router.delete('/delete/:id', (request, response) => {
-   const content = request.body;
-   const queryString = 'DELETE FROM Accounts WHERE Id = ?'
- 
-   libiotdb.pool.query(queryString, [content.Id], (error, result, fields) => {
-       if (error) {
-           console.log("ERROR: " + error);
-           response.status(500).json(JSON.stringify(error));
-       } else {
-           console.log('Success!');
-           response.status(200).end();
-       }
-   }); 
-});
-
-
-//getting account by specific id 
-router.get('/:id', (request, response) => {
- 
-   const content = request.params;
-   const queryString = 'SELECT Id, Name FROM Accounts WHERE Id = ?';
- 
-   libiotdb.pool.query(queryString, [content.id], (error, result, fields) => {
-       if (error) {
-           console.log("ERROR: " + error);
-           response.status(500).json(JSON.stringify(error));
-       }
+    const content = request.body;
+    const queryString = 'DELETE FROM Accounts WHERE Id = ?'
   
-       if (result.length > 0) {
-           console.log(JSON.stringify(result));
-           response.status(200).json(result);
-          
-       } else {
-           console.log('Query returned zero results.');
-           response.status(204).end();
-       }
-   });
-}); 
+    libiotdb.pool.query(queryString, [content.Id], (error, result, fields) => {
+        if (error) {
+            console.log("ERROR: " + error);
+            response.status(500).json(JSON.stringify(error));
+        } else {
+            console.log('Success!');
+            response.status(200).end();
+        }
+    }); 
+ });
+
+router.get('/:id', (request, response) => {
+    const content = request.params;
+    const queryString = `SELECT Id, Name FROM Accounts WHERE Id = ?`; 
+    libiotdb.pool.query(queryString, [content.id], (error, result, fields) => {
+        if (error) {
+            console.log("ERROR: " + error);
+            response.status(500).json(JSON.stringify(error));
+        } 
+        
+        if (result.length > 0) {
+            console.log(JSON.stringify(result));
+            response.status(200).json(result);
+        }
+        else {
+            console.log('query returned zero results.'); 
+            response.status(204).end;
+        }
+    });
+
+});  
+
+
 
 //Updating a specific account
 router.post('/update', (request, response) => {

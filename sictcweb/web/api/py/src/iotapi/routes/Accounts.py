@@ -4,34 +4,7 @@ from dotenv import load_dotenv
 
 #create application object to hadnle the different routes
 accountBP = Blueprint('accountBP',__name__)
-
-#Loading the .env file into memory
-load_dotenv()
-
-#put all of the db connection material in separate class
-import sys                  #GPT this, needed to put the eonnection stuff in separate file
-sys.path.append('routes/')  
-from DBConnection import connectToDB
-connection=connectToDB()
-
-
-dbName = "IoT"# os.getenv("dbName")#"IoT"
-user = "root"#os.getenv("dbUser")#"root"
-password = "Password1"#os.getenv("password")#"Password1"
-host = "localhost"#os.getenv("host")#'localhost'
-print(dbName,user,password,host)
-connection = pymysql.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=dbName
-    )
-try:
-    if connection:
-        print("Connected to the database")
-except pymysql.Error as e:
-    print(f"Error connecting to db: {e}")
-    
+  
 @accountBP.route('/welcome')
 def hello():
     return "Hello and welcome to the Accounts route of the IoT API"
