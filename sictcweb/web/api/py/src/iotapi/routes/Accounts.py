@@ -1,6 +1,10 @@
 from flask import Flask, request, redirect, url_for, jsonify, Blueprint, send_file, make_response
 import pymysql
 from dotenv import load_dotenv
+import sys
+sys.path.append('../')
+from DBConnection import connectToDB
+connection=connectToDB()
 
 #create application object to hadnle the different routes
 accountBP = Blueprint('accountBP',__name__)
@@ -12,6 +16,7 @@ def hello():
 #GET/READ everyrecord from Accounts Table
 @accountBP.route('/')
 def getAll():
+    print("slash route ran")
     queryString = f"SELECT * FROM Accounts"
     try:
         with connection.cursor() as cursor:
@@ -37,12 +42,12 @@ def getAll():
     except:
         return "oops something went wrong"
 
-    return userJsonData#jsonify(userJsonData)
+    return jsonify(userJsonData)
     #finally:                       ###  Should be used to stop db connection
         #connection.close()
 
 #GET 1 record from Accounts Table
-@accountBP.route('/id/<id>')
+@accountBP.route('/<id>')
 def getById(id):
     queryString=f'SELECT * FROM Accounts WHERE Id = {id}'
     print(queryString)
@@ -55,7 +60,7 @@ def getById(id):
             userJsonData=[]                 ###convert rows to json
             data={
                   'id':rows[0],
-                  'state':rows[1]
+                  'Name':rows[1]
                   }
             userJsonData.append(data)
             print(userJsonData)
@@ -106,14 +111,14 @@ def addIt():
     return jsonify(response_data), 200
 
 #DELETE 1 record from Accounts Table
-@accountBP.route('/delete',methods=['DELETE'])
-def deleteIt():
-    if request.is_json:
+@accountBP.route('/delete/<id>',methods=['DELETE'])
+def deleteIt(id):
+    '''if request.is_json:
         data = request.get_json()
         id = data.get("Id")
     else:
         return "no JSON data provided"
-        id = 0
+        id = 0'''
     queryString=f'DELETE FROM Accounts WHERE Id = {id}'
     
     try:
@@ -161,3 +166,23 @@ def queryThis(queryString):
         return(False,f"Error connecting to db: {e}")
     except:
         return (False,"oops something went wrong")
+'''#DELETE 1 record from Accounts Table
+@accountBP.route('/delete',methods=['DELETE'])
+def deleteIt():
+    if request.is_json:
+        data = request.get_json()
+        id = data.get("Id")
+    else:
+        return "no JSON data provided"
+        id = 0
+    queryString=f'DELETE FROM Accounts WHERE Id = {id}'
+    
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(queryString)
+        connection.commit()                 #saves the request to the db
+    except pymysql.Error as e:
+        print(f"Error connecting to db: {e}")
+    except:
+        return "oops something went wrong"
+   ''' 

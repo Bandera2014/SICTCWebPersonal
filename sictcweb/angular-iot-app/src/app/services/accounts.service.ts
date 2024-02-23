@@ -7,29 +7,35 @@ import { Account,NewAccount,UpdateAccount } from '../interfaces/accounts';
 })
 
 export class AccountsService {
- uri = 'http://localhost:3000';
- constructor(private http: HttpClient) {
-}
+    location = '172.16.0.200';
+    //location = 'localhost';
+
+//    uri=`http://${location}:3000`;
+    uri=`http://172.16.0.200:3000`;
+   
+
+    constructor(private http: HttpClient) {}
  
-  getAccountById(id: number) {
-    console.log("getAccountById ran");
-    return this.http.get<Account[]>(`${this.uri}/accounts/${id}`);
-  }
-  addAccount(data: NewAccount) {
-    console.log("addAccount ran");
-    return this.http.post<NewAccount>(`${this.uri}/accounts/add`, data);
-  }
-  getAccounts() {
-    return this.http.get(`${this.uri}/accounts`);
-  }
+    getAccountById(id: number) {
+        console.log(this.uri);
+        console.log("getAccountById ran");
+        return this.http.get<Account[]>(`${this.uri}/accounts/${id}`);
+    }
+    addAccount(data: NewAccount) {
+        console.log("addAccount ran");
+        return this.http.post<NewAccount>(`${this.uri}/accounts/add`, data);
+    }
+    getAccounts() {
+        return this.http.get(`${this.uri}/accounts`);
+    }
 
-  deleteAccount(id: number) {
-    return this.http.delete<Account>(`${this.uri}/accounts/delete/${id}`);
-  }
+    deleteAccount(id: number) {
+        return this.http.delete<Account>(`${this.uri}/accounts/delete/${id}`);
+    }
 
-  updateAccount(data: UpdateAccount) {
-    return this.http.post<UpdateAccount>(`${this.uri}/accounts/update`, data);
-  }
+    updateAccount(data: UpdateAccount) {
+        return this.http.post<UpdateAccount>(`${this.uri}/accounts/update`, data);
+    }
 
 
 }

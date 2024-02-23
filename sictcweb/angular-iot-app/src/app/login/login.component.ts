@@ -23,8 +23,11 @@ export class LoginComponent implements OnInit {
   }
 
    loginBtn() {
+        console.log(this.username);
+        console.log(this.idNum);
        this.username = this.username.toUpperCase();
        this.accService.getAccountById(this.idNum).subscribe((accounts: Account[]) => {
+        console.log(accounts);
        this.accName = accounts[0].Name.toUpperCase();
        if (this.username === this.accName) {
            this.router.navigate(['/home']);

@@ -1,9 +1,11 @@
 from flask import Flask, request, redirect, url_for, jsonify, Blueprint, send_file, make_response
+from flask_cors import CORS
 import pymysql
 
 from routes import States, Accounts
 
 app = Flask(__name__)
+CORS(app)
 
 #put all of the db connection material in separate class
 import sys                  #GPT this, needed to put the eonnection stuff in separate file
