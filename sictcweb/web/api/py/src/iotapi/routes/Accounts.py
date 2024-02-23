@@ -129,8 +129,8 @@ def deleteIt(id):
         print(f"Error connecting to db: {e}")
     except:
         return "oops something went wrong"
-    
-    return redirect(url_for('getAll'))
+    return make_response('',200)
+    #return redirect(url_for('getAll'))
 
 #UPDATE 1 record from Accounts Table
 @accountBP.route('/update',methods=['POST'])
@@ -153,8 +153,8 @@ def updateIt():
         print(f"Error connecting to db: {e}")
     except:
         return "oops something went wrong"
-    
-    return redirect(url_for('getAll'))
+    return make_response('',200)
+    #return redirect(url_for('getAll'))
 
 def queryThis(queryString):
     try:
