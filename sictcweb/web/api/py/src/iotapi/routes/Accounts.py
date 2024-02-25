@@ -138,13 +138,17 @@ def updateIt():
     if request.is_json:
         data = request.get_json()
         id = data.get("Id")
+        name = data.get("Name")
+        address = data.get("Address")
+        city = data.get("City")
         state = data.get("State")
+        zip = data.get("Zip")
     else:
         return "no JSON data provided"
         id = 9
         state = 'AK'
-    queryString=f"UPDATE Accounts SET State='{state}' WHERE Id={id}"
-    
+    queryString=f"UPDATE Accounts SET Name = '{name}', Address = '{address}', City = '{city}', State = '{state}', Zip = '{zip}' WHERE Id = {id}"
+    print(queryString)
     try:
         with connection.cursor() as cursor:
             cursor.execute(queryString)

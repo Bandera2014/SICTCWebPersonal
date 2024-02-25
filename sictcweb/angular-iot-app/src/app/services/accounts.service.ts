@@ -7,12 +7,12 @@ import { Account,NewAccount,UpdateAccount } from '../interfaces/accounts';
 })
 
 export class AccountsService {
-    location = '172.16.0.200';
-    //location = 'localhost';
+    //location = '172.16.0.200';
+    location = 'localhost';
 
 //    uri=`http://${location}:3000`;
-    uri=`http://172.16.0.200:3000`;
-   
+    //uri=`http://172.16.0.200:3000`;
+    uri = 'http://localhost:3000';
 
     constructor(private http: HttpClient) {}
  
