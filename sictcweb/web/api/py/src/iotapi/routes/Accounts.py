@@ -113,14 +113,7 @@ def addIt():
 #DELETE 1 record from Accounts Table
 @accountBP.route('/delete/<id>',methods=['DELETE'])
 def deleteIt(id):
-    '''if request.is_json:
-        data = request.get_json()
-        id = data.get("Id")
-    else:
-        return "no JSON data provided"
-        id = 0'''
     queryString=f'DELETE FROM Accounts WHERE Id = {id}'
-    
     try:
         with connection.cursor() as cursor:
             cursor.execute(queryString)
@@ -129,8 +122,11 @@ def deleteIt(id):
         print(f"Error connecting to db: {e}")
     except:
         return "oops something went wrong"
-    return make_response('',200)
-    #return redirect(url_for('getAll'))
+    response_data = {
+            'status': 'success',
+            'message': f'You have successfully deleted id:{id}.'
+        }
+    return jsonify(response_data), 200
 
 #UPDATE 1 record from Accounts Table
 @accountBP.route('/update',methods=['POST'])
@@ -170,23 +166,4 @@ def queryThis(queryString):
         return(False,f"Error connecting to db: {e}")
     except:
         return (False,"oops something went wrong")
-'''#DELETE 1 record from Accounts Table
-@accountBP.route('/delete',methods=['DELETE'])
-def deleteIt():
-    if request.is_json:
-        data = request.get_json()
-        id = data.get("Id")
-    else:
-        return "no JSON data provided"
-        id = 0
-    queryString=f'DELETE FROM Accounts WHERE Id = {id}'
-    
-    try:
-        with connection.cursor() as cursor:
-            cursor.execute(queryString)
-        connection.commit()                 #saves the request to the db
-    except pymysql.Error as e:
-        print(f"Error connecting to db: {e}")
-    except:
-        return "oops something went wrong"
-   ''' 
+
