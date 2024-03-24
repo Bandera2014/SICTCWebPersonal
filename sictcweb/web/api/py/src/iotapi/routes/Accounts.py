@@ -39,7 +39,9 @@ def getAll():
             print('userJsonData: ',userJsonData)
     except pymysql.Error as e:
         print(f"Error connecting to db: {e}")
+        return f"Error connecting to db: {e}"
     except:
+        print("non-pymysql error")
         return "oops something went wrong"
 
     return jsonify(userJsonData)
