@@ -25,4 +25,4 @@ def connectToDB():
         print(f"Error connecting to db: {e}")
         #return None
     
-# connectToDB()
+connectToDB()

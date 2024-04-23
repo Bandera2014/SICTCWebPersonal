@@ -1,6 +1,5 @@
 from flask import Flask, Blueprint
 from routes import Accounts
-from routes import DBConnection
 
 
 app = Flask(__name__)
